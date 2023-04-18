@@ -1,0 +1,1648 @@
+openapi: "3.0.2"
+info:
+  title: API Avicenna Mobile
+  version: "1.0"
+tags:
+  - name: Paramedic
+    description: Endpoints related to paramedic or doctor
+  - name: Patient
+    description: Endpoints related to patient
+  - name: Appointment
+    description: Endpoints related to appointment
+  - name: Registration
+    description: Endpoints related to registration
+  - name: Unit
+    description: Endpoints related to service unit or service room
+  - name: PO
+    description: Endpoints related to purchase order
+paths:
+  /ParamedicGetReference:
+    get:
+      tags:
+        - Paramedic
+      description: Get paramedic reference by UserID
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: UserID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      ParamedicID:
+                        type: string
+                      MobilePhoneNo:
+                        type: string
+  /VitalSignByMedicalNo:
+    get:
+      tags:
+        - Patient
+      description: Get Patient Vital Signs by Medical Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: MedicalNo
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: VitalSignType
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RegistrationNo:
+                          type: string
+                        RecordDate_yMdHms:
+                          type: string
+                        RecordTime:
+                          type: string
+                        CreateDateTime_yMdHms:
+                          type: string
+                        QuestionAnswerText:
+                          type: string
+                        QuestionAnswerText2:
+                          type: string
+                        QuestionAnswerNum:
+                          type: string
+                        VitalSignID:
+                          type: string
+                        VitalSignName:
+                          type: string
+                        VitalSignUnit:
+                          type: string
+  /VitalSignByMedicalNoLatest:
+    get:
+      tags:
+        - Patient
+      description: Get Patient Latest Medical Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: MedicalNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RegistrationNo:
+                          type: string
+                        RecordDate_yMdHms:
+                          type: string
+                        RecordTime:
+                          type: string
+                        CreateDateTime_yMdHms:
+                          type: string
+                        QuestionAnswerText:
+                          type: string
+                        QuestionAnswerText2:
+                          type: string
+                        QuestionAnswerNum:
+                          type: string
+                        VitalSignID:
+                          type: string
+                        VitalSignName:
+                          type: string
+                        VitalSignUnit:
+                          type: string
+  /VitalSignByRegistrationNoLatest:
+    get:
+      tags:
+        - Patient
+      description: Get Patient Latest Vital Sign by Registration Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RegistrationNo:
+                          type: string
+                        RecordDate_yMdHms:
+                          type: string
+                        RecordTime:
+                          type: string
+                        CreateDateTime_yMdHms:
+                          type: string
+                        QuestionAnswerText:
+                          type: string
+                        QuestionAnswerText2:
+                          type: string
+                        QuestionAnswerNum:
+                          type: string
+                        VitalSignID:
+                          type: string
+                        VitalSignName:
+                          type: string
+                        VitalSignUnit:
+                          type: string
+  /PatientRegistrationHistory:
+    get:
+      tags:
+        - Registration
+      description: Get Patient Registration History
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: MedicalNo
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ServiceUnitID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RegistrationNo:
+                          type: string
+                        SRRegistrationType:
+                          type: string
+                        RegistrationDate_yMdHms:
+                          type: string
+                        RegistrationTime:
+                          type: string
+                        RegistrationQue:
+                          type: integer
+                        ActualVisitDate_yMdHms:
+                          type: string
+                        AppointmentNo:
+                          type: string
+                        FromRegistrationNo:
+                          type: string
+                        ParamedicID:
+                          type: string
+                        ParamedicName:
+                          type: string
+                        ServiceUnitID:
+                          type: string
+                        ServiceUnitName:
+                          type: string
+                        GuarantorID:
+                          type: string
+                        GuarantorName:
+                          type: string
+                        VisitTypeID:
+                          type: string
+                        VisitTypeName:
+                          type: string
+                        Notes:
+                          type: string
+                        DiagnoseID:
+                          type: string
+                        DiagnosaText:
+                          type: string
+                        DischargeDate_yMdHms:
+                          type: string
+                        DischargeTime:
+                          type: string
+                        DischargeNotes:
+                          type: string
+                        DischargeMedicalNotes:
+                          type: string
+  /PatientLabResult:
+    get:
+      tags:
+        - Patient
+      description: Get Patient Lab Result History
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: MedicalNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        MedicalNo:
+                          type: string
+                        RegistrationNo:
+                          type: string
+                        TransactionNo:
+                          type: string
+                        RegistrationDate_yMdHms:
+                          type: string
+                        TransactionDate_yMdHms:
+                          type: string
+                        TestGroup:
+                          type: string
+                        TestCode:
+                          type: string
+                        TestName:
+                          type: string
+                        Result:
+                          type: string
+                        Flag:
+                          type: string
+                        NormalResult:
+                          type: string
+                        TestComment:
+                          type: string
+  /PatientLabResultGetOne:
+    get:
+      tags:
+        - Patient
+      description: Get Patient Lab Result by Transaction Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactionNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      MedicalNo:
+                        type: string
+                      RegistrationNo:
+                        type: string
+                      TransactionNo:
+                        type: string
+                      RegistrationDate_yMdHms:
+                        type: string
+                      TransactionDate_yMdHms:
+                        type: string
+                      TestGroup:
+                        type: string
+                      TestCode:
+                        type: string
+                      TestName:
+                        type: string
+                      Result:
+                        type: string
+                      Flag:
+                        type: string
+                      NormalResult:
+                        type: string
+                      TestComment:
+                        type: string
+  /PatientGuarantorGetOne:
+    get:
+      tags:
+        - Patient
+      description: Get Patient Guarantor
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactionNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      GuarantorID:
+                        type: string
+                      GuarantorName:
+                        type: string
+                      GuarantorCardNo:
+                        type: string
+  /GuarantorUpdateCardNo:
+    get:
+      tags:
+        - Patient
+      description: Update Patient Guarantor Card Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: MedicalNo
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: GuarantorCardNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      PatientID:
+                        type: string
+                      MedicalNo:
+                        type: string
+                      FirstName:
+                        type: string
+                      MiddleName:
+                        type: string
+                      LastName:
+                        type: string
+                      DateOfBirth:
+                        type: string
+                      StreetName:
+                        type: string
+                      District:
+                        type: string
+                      City:
+                        type: string
+                      County:
+                        type: string
+                      State:
+                        type: string
+                      ZipCode:
+                        type: string
+                      MobilePhoneNo:
+                        type: string
+                      Email:
+                        type: string
+                      GuarantorID:
+                        type: string
+                      BirthPlace:
+                        type: string
+                      Sex:
+                        type: string
+                      Ssn:
+                        type: string
+                      SRReligionName:
+                        type: string
+                      SREducationname:
+                        type: string
+                      SROcupationName:
+                        type: string
+                      SRTitleName:
+                        type: string
+                      DateOfBirth_yMdHms:
+                        type: string
+  /RegistrationGetOne:
+    get:
+      tags:
+        - Registration
+      description: Get One Patient Registration
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      RegistartionNo:
+                        type: string
+                      SRRegistrationType:
+                        type: string
+                      RegistrationDate:
+                        type: string
+                      RegistrationDate_yMdHms:
+                        type: string
+                      RegistrationTime:
+                        type: string
+                      RegistrationQue:
+                        type: integer
+                      ActualVisitDate:
+                        type: string
+                      ActualVisitDate_yMdHms:
+                        type: string
+                      FromRegistrationNo:
+                        type: string
+                      ParamedicID:
+                        type: string
+                      ParamedicName:
+                        type: string
+                      ServiceUnitID:
+                        type: string
+                      ServiceUnitName:
+                        type: string
+                      VisitTypeID:
+                        type: string
+                      VisitTypeName:
+                        type: string
+                      Notes:
+                        type: string
+                      DiagnoseID:
+                        type: string
+                      DiagnosisText:
+                        type: string
+                      DischargeDate:
+                        type: string
+                      DischargeDate_yMdHms:
+                        type: string
+                      DischargeTime:
+                        type: string
+                      DischargeNotes:
+                        type: string
+                      DischargeMedicalNotes:
+                        type: string
+                      GuarantorID:
+                        type: string
+                      GuarantorName:
+                        type: string
+                      MedicalNo:
+                        type: string
+                      Sex:
+                        type: string
+                      DateOfBirth:
+                        type: string
+                      FirstName:
+                        type: string
+                      MiddleName:
+                        type: string
+                      LastName:
+                        type: string
+                      IsNewPatient:
+                        type: boolean
+  /RegistrationExpertise:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Expertise
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      RegistrationNo:
+                        type: string
+                      TransactionNo:
+                        type: string
+                      ItemID:
+                        type: string
+                      ItemName:
+                        type: string
+                      TestResultDateTime:
+                        type: string
+                      TestResult:
+                        type: string
+                      TestSummary:
+                        type: string
+                      TestSuggest:
+                        type: string
+  /RegistrationEpisodeDiagnose:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Episode Diagnose
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        DiagnoseID:
+                          type: string
+                        DiagnoseName:
+                          type: string
+                        DiagnoseType:
+                          type: string
+                        ParamedicName:
+                          type: string
+                        ServiceUnitName:
+                          type: string
+                        LastUpdateDateTime:
+                          type: string
+                        LastUpdateDateTime_yMdHms:
+                          type: string
+  /RegistrationPatientAllergen:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Patient Allergen
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        AllergenName:
+                          type: string
+                        DescAndReaction:
+                          type: string
+  /ScheduleSelectable:
+    get:
+      tags:
+        - Paramedic
+      description: Get Selectable Schedule
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: DateStart
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: DateEnd
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ServiceUnitID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ScheduleDate:
+                          type: string
+  /RegistrationMedicalItem:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Medical Item
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        TransactionNo:
+                          type: string
+                        ItemID:
+                          type: string
+                        ItemName:
+                          type: string
+  /ClassGetList:
+    get:
+      tags:
+        - Registration
+      description: Get List Class
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ClassID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ClassName
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ClassID:
+                          type: string
+                        ClassName:
+                          type: string
+  /ServiceRoomInpatientGetList:
+    get:
+      tags:
+        - Unit
+      description: Get Room List
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RoomID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RoomName
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RoomID:
+                          type: string
+                        RoomName:
+                          type: string
+  /ServiceRoomGetPhoto:
+    get:
+      tags:
+        - Unit
+      description: Get Room Photo
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RoomID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      RoomID:
+                        type: string
+                      SeqNo:
+                        type: string
+                      Foto64:
+                        type: string
+  /ServiceRoomGetPhotoByClassID:
+    get:
+      tags:
+        - Unit
+      description: Get Room Photo by Class ID
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ClassID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      RoomID:
+                        type: string
+                      ClassID:
+                        type: string
+                      ClassName:
+                        type: string
+                      Foto64:
+                        type: string
+  /BedAvailability:
+    get:
+      tags:
+        - Unit
+      description: Get Availability of Bed
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ClassID:
+                          type: string
+                        ClassName:
+                          type: string
+                        JumlahTersedia:
+                          type: integer
+  /AppointmentGetListByParamedicIDAppointmentDate:
+    get:
+      tags:
+        - Appointment
+      description: Get Appointment List by Paramedic ID and Appointment Date
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: AppointmentDate
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        MedicalNo:
+                          type: string
+                        PatientName:
+                          type: string
+                        AppointmentQue:
+                          type: integer
+                        GuarantorName:
+                          type: string
+                        IsNewVisit:
+                          type: boolean
+  /RegistrationGetListIpByParamedicID:
+    get:
+      tags:
+        - Registration
+      description: Get Inpatient Registration by Paramedic ID
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: GuarantorID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ClassID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RoomID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: EwsStatus
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        PatientID:
+                          type: string
+                        RegistrationNo:
+                          type: string
+                        FromRegistrationNo:
+                          type: string
+                        MedicalNo:
+                          type: string
+                        PatientName:
+                          type: string
+                        DateOfBirth:
+                          type: string
+                        DateOfBirth_yMdHms:
+                          type: string
+                        GuarantorName:
+                          type: string
+                        RoomName:
+                          type: string
+                        ClassName:
+                          type: string
+  /ParamedicFeeByParamedicIDTransDate:
+    get:
+      tags:
+        - Paramedic
+      description: Get Paramedic Fee by Transaction Date
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactionDateStart
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactionDateEnd
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RegistartionNo:
+                          type: string
+                        MedicalNo:
+                          type: string
+                        PatientName:
+                          type: string
+                        ItemName:
+                          type: string
+                        Qty:
+                          type: integer
+                        GuarantorName:
+                          type: string
+                        PaymentPercentage:
+                          type: integer
+  /ParamedicFeeByparamedicIDPaymentDate:
+    get:
+      tags:
+        - Paramedic
+      description: Get Paramedic Fee by Payment Date
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: PaymentDateStart
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: PaymentDateEnd
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        PaymentGroup:
+                          type: string
+                        PaymentDate:
+                          type: string
+                        Transaction:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              RegistrationNo:
+                                type: string
+                              MedicalNo:
+                                type: string
+                              PatientName:
+                                type: string
+                              ItemName:
+                                type: string
+                              Qty:
+                                type: integer
+                              GuarantorName:
+                                type: string
+                              Amount:
+                                type: number
+  /ParamedicFeeSummaryByParamedicIdTransDate:
+    get:
+      tags:
+        - Paramedic
+      description: Get Paramedic Fee Summary by Paramedic ID
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactionDateStart
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactionDateEnd
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      ParamedicID:
+                        type: string
+                      PendingFeeAmount:
+                        type: number
+                      Fee4ServicePaid:
+                        type: integer
+  /RegistrationCPPT:
+    get:
+      tags:
+        - Registration
+      description: Get Registration CPPT by Registration Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        RegistrationNo:
+                          type: string
+                        DateTimeInfo:
+                          type: string
+                        CreatedByUserID:
+                          type: string
+                        ServiceUnitName:
+                          type: string
+                        SRMedicalNotesInputType:
+                          type: string
+                        Info1:
+                          type: string
+                        Info2:
+                          type: string
+                        Info3:
+                          type: string
+                        Info4:
+                          type: string
+                        Info5:
+                          type: string
+                        PpaInstruction:
+                          type: string
+                        DpjpNotes:
+                          type: string
+                        IsDeleted:
+                          type: boolean
+  /RegistrationMedication:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Medication List by Registration Number
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: RegistrationNo
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ItemName:
+                          type: string
+                        ConsumeMethod:
+                          type: string
+                        StartDateTime:
+                          type: string
+  /RegistrationSummaryByParamedicID:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Total Grouped by Registration Type
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      Title:
+                        type: string
+                      Data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Name:
+                              type: string
+                            Value:
+                              type: string
+  /RegistrationSummaryGuarantorByParamedicID:
+    get:
+      tags:
+        - Registration
+      description: Get Registration Total Grouped by Guarantor
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ParamedicID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      Title:
+                        type: string
+                      Data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Name:
+                              type: string
+                            Value:
+                              type: string
+  /ApprovalPOGetList:
+    get:
+      tags:
+        - PO
+      description: Get List Approval Purchase Order
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: UserID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ApprovalProgress:
+                          type: object
+                          properties:
+                            Level:
+                              type: string
+                            Name:
+                              type: string
+                        TransactionNo:
+                          type: string
+                        SupplierName:
+                          type: string
+                        TransactionDate:
+                          type: string
+                        Term:
+                          type: string
+                        Tax:
+                          type: string
+                        Notes:
+                          type: string
+                        TransactionAmount:
+                          type: number
+                        GlobalDiscAmount:
+                          type: number
+                        OrderAmount:
+                          type: number
+                        AmountTaxed:
+                          type: number
+                        TaxPercentage:
+                          type: number
+                        TaxAmount:
+                          type: number
+                        Total:
+                          type: number
+                        Items:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              ItemID:
+                                type: string
+                              ItemName:
+                                type: string
+                              POQty:
+                                type: number
+                              POUnit:
+                                type: string
+                              Price:
+                                type: number
+                              Disc1:
+                                type: number
+                              Disc2:
+                                type: number
+                              DiscAmount:
+                                type: number
+                              Total:
+                                type: number
+  /ApprovalPOSetApprove:
+    get:
+      tags:
+        - PO
+      description: Approve Purchase Order
+      parameters:
+        - name: AccessKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: TransactinoNo
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: ApprovalLevel
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: UserID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  errorCode:
+                    type: string
+                  data:
+                    type: string
